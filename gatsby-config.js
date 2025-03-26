@@ -17,11 +17,11 @@ module.exports = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: 'Yashita Namdeo',
-        short_name: 'Yashita Namdeo',
+        name: 'Yeshwanth Toluva',
+        short_name: 'Yeshwanth Toluva',
         start_url: '/',
-        background_color: config.colors.darkNavy,
-        theme_color: config.colors.navy,
+        background_color: '#0A0A0A', // Dark Black
+        theme_color: '#FFD700',
         display: 'minimal-ui',
         icon: 'src/images/logo.png',
       },

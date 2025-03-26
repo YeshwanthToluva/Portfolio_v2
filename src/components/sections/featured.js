@@ -205,7 +205,7 @@ const StyledProject = styled.div`
 `;
 
 const Featured = ({ data }) => {
-  const featuredProjects = data.filter(({ node }) => node);
+  const featuredProjects = data.filter(({ node }) => node).slice(0, 2);
 
   const revealTitle = useRef(null);
   const revealProjects = useRef([]);

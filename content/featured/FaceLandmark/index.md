@@ -1,15 +1,14 @@
 ---
 date: '4'
-title: 'AI Face Landmark Detection'
-cover: 'face-landmark.png'
-github: 'https://github.com/yashitanamdeo/face-landmark-detection'
-external: 'https://yashitanamdeo.github.io/face-landmark-detection/'
+title: 'My Work Environment'
+cover: 'hs.png'
+github: 'https://github.com/Axenide/Dotfiles/tree/main'
+external: 'https://github.com/Axenide/Dotfiles/tree/main'
 tech:
-  - TensorFlow.JS
-  - React
+  - Arch Linux
+  - Hyprland
+  - Open Source
 showInProjects: true
 ---
 
-Facial landmark recognition allows you to detect a number of different points on your face that together make up your eyes, mouth, ears, nose and so on.
-
-Inspired by Nicholas Renotte's [Youtube Tutorial](https://www.youtube.com/watch?v=7lXYGDVHUNw).
+Before diving into my projects, here's a glimpse of my daily workflow. I work on Arch Linux with a sleek Hyprland setup, customized for efficiency and aesthetics. This open-source environment keeps me in full control—lightweight, minimal, and tailored for deep focus.

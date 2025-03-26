@@ -3,20 +3,20 @@ title: 'About Me'
 avatar: 'me.jpg'
 skills:
   - Coding
-  - Reading
-  - Painting
-  - Crafting
+  - Binge Watching movies
+  - Gym
+  - Geopoltics
   - Problem Solving
   - Team Management
   - Mentoring
 ---
 
-Hello! I'm Yashita Namdeo, from Indore, also known as Mini Mumbai and the Cleanest City of India.
+Hello! I'm Yeshwanth.
 
-I am a creative, time punctual, dedicated, goal-oriented individual with decent moral Values and Ethicates along with a high-energy level, honed communication skills, strong organizational skills, and meticulous attention to detail.
+I am a passionate developer and cloud enthusiast with a knack for building innovative solutions. I specialize in Cloud Computing, Full-Stack Development, and System Administration. From crafting scalable architectures to developing intelligent systems, I love solving real-world problems.
 
-I am pursuing my Bachelors from [SVVV, Indore](https://www.svvv.edu.in/) in Computer Science and Engineering (2018-2022) my current GPA is [3.7]() out of 4.
+I am currently pursuing my B.Tech in Computer Science and Engineering (CSE) (2nd year) at a top CS college. Alongside my studies, I actively work on projects related to AI/ML, cybersecurity, and gesture-based system control.
 
-I am a member of [Developer Student Club - SVVV](https://dsc.community.dev/shri-vaishnav-vidyapeeth-vishwavidyalaya/) and have also been awarded 75% Merit Scholarship(Top 10%) by my college.
+I have earned AWS, Google, and IBM certifications and founded a student club to educate peers about cloud technologies. My contributions extend to open-source projects and hackathons, where I love collaborating and building impactful solutions.
 
-Here are a few of the other activities that I love to do!
+Here are a few other activities I love to do!

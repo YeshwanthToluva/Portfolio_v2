@@ -1,12 +1,12 @@
 ---
-date: '2020-09-21'
-title: 'Member'
-company: 'DSV - SVVV'
-location: remote
-range: 'Sep 2020 - Present'
-url: 'https://dsc.community.dev/shri-vaishnav-vidyapeeth-vishwavidyalaya/'
+date: ''
+title: 'Cloud Community Vice President'
+company: 'Government Institute Of Electronics'
+location: HYD
+range: 'Feb 2023 - May 2024'
+url: 'https://dte.telangana.gov.in/collegeInformation?id=1-447621031'
 ---
 
-- Grown knowledge in a peer-to-peer learning environment.
-- Build solutions for local businesses and the community.
-- Attained several technical workshops.
+Assisted with special events and programs.
+Maintained clean, neat, and operational facilities to serve program needs.
+Managed the smooth flow of fundraising events by helping with organization and planning
