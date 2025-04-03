@@ -1,12 +1,9 @@
 ---
-date: ''
-title: 'Cloud Community Vice President'
-company: 'Government Institute Of Electronics'
-location: HYD
-range: 'Feb 2023 - May 2024'
-url: 'https://dte.telangana.gov.in/collegeInformation?id=1-447621031'
+title: 'IBM Data Engineering'
+company: 'IBM'
+issuer: 'Coursera'
+date: '2024'
+url: 'https://www.credly.com/badges/ab9049c8-fb51-4b91-9820-7dfb35be7f37/linked_in_profile'
 ---
 
-Assisted with special events and programs.
-Maintained clean, neat, and operational facilities to serve program needs.
-Managed the smooth flow of fundraising events by helping with organization and planning
+Earned the IBM Data Engineering Professional Certificate, showcasing expertise in SQL, NoSQL, data pipelines, ETL processes, data warehousing, and big data technologies like Hadoop and Spark.
