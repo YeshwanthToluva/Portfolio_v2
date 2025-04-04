@@ -103,14 +103,11 @@ const Footer = () => {
       </StyledSocial>
       <StyledMetadata tabindex="-1">
         <StyledGitHubLink
-          href="https://github.com/bchiang7/v4"
+          href="https://media.makeameme.org/created/btw-i-use.jpg"
           target="_blank"
           rel="nofollow noopener noreferrer"
         >
-          <div>
-            Are you a recruiter ?<br></br>
-            Let's play a game!
-          </div>
+          <div>Click me</div>
 
           {githubInfo.stars && githubInfo.forks && (
             <StyledGitHubInfo>
