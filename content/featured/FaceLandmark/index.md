@@ -2,7 +2,7 @@
 date: '4'
 title: 'My Work Environment'
 cover: 'hs.png'
-github: 'https://github.com/Axenide/Dotfiles/tree/main'
+github: 'https://github.com/YeshwanthToluva/Dotfiles-Iron_man'
 external: 'https://my-static-site-yeshwanth.s3.us-east-1.amazonaws.com/demo.html'
 tech:
   - Arch Linux
