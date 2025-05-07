@@ -3,7 +3,7 @@ date: '3'
 title: 'DeepSync - Productivity Web App'
 cover: 'deepsync.png'
 github: 'https://github.com/YeshwanthToluva/DeepSync'
-external: 'https://github.com/YeshwanthToluva/DeepSync'
+external: 'https://deepsync-demo.s3.us-east-1.amazonaws.com/public_hosting.html'
 tech:
   - JavaScript
   - Node.js
