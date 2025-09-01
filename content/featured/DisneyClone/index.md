@@ -1,17 +1,17 @@
 ---
-date: '2'
-title: 'Disney+ Clone'
-cover: './disneyclone.png'
-github: 'https://github.com/yashitanamdeo/Disney-plus-Clone'
-external: 'https://disney-clone-83e44.web.app/'
+date: '5'
+title: 'ASTRA'
+cover: 'astra.png'
+github: 'https://github.com/YeshwanthToluva/ASTRA_v2'
+external: 'https://github.com/YeshwanthToluva/ASTRA_v2'
 tech:
-  - ReactJS
-  - Redux
-  - Styled Components
-  - Firebase
+  - Mediapipe
+  - Computer Vision
+  - TensorFlow/Keras
+  - Open Source
 showInProjects: true
 ---
 
-Built Disney+ Clone with React JS with Google account's Sign in feature. Styled to get 15+ movies made by Disney; clickable images to get details of the specific movie.
-
-Inspired by Clever Programmer's [Youtube Channel](https://www.youtube.com/channel/UCqrILQNl5Ed9Dz6CGMyvMTQ).
+ASTRA is a real-time gesture recognition system that translates hand movements into text and speech.  
+It’s designed to support inclusive communication for individuals with speech or hearing impairments.  
+Built with deep learning and computer vision, ASTRA uses custom-trained models to achieve high accuracy in recognizing complex gestures, making interaction seamless and accessible.
