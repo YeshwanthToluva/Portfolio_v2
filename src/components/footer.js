@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { FormattedIcon } from '@components/icons';
 import { socialMedia } from '@config';
@@ -44,110 +44,59 @@ const StyledGitHubLink = styled.a`
   color: ${colors.lightSlate};
   padding: 10px;
 `;
-const StyledGitHubInfo = styled.div`
-  margin-top: 10px;
 
-  & > span {
-    display: inline-flex;
-    align-items: center;
-    margin: 0 7px;
-  }
-  svg {
-    display: inline-block;
-    height: 15px;
-    width: auto;
-    margin-right: 5px;
-  }
-`;
-
-const Footer = () => {
-  const [githubInfo, setGitHubInfo] = useState({
-    stars: null,
-    forks: null,
-  });
-
-  useEffect(() => {
-    if (process.env.NODE_ENV !== 'production') {
-      return;
-    }
-    fetch('https://api.github.com/repos/bchiang7/v4')
-      .then(response => response.json())
-      .then(json => {
-        const { stargazers_count, forks_count } = json;
-        setGitHubInfo({
-          stars: stargazers_count,
-          forks: forks_count,
-        });
-      })
-      .catch(e => console.error(e));
-  }, []);
-
-  return (
-    <StyledContainer>
-      <StyledSocial>
-        <StyledSocialList>
-          {socialMedia &&
-            socialMedia.map(({ name, url }, i) => (
-              <li key={i}>
-                <StyledSocialLink
-                  href={url}
-                  target="_blank"
-                  rel="nofollow noopener noreferrer"
-                  aria-label={name}
-                >
-                  <FormattedIcon name={name} />
-                </StyledSocialLink>
-              </li>
-            ))}
-        </StyledSocialList>
-      </StyledSocial>
-      <StyledMetadata tabindex="-1">
-        <StyledGitHubLink
-          href="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fgifdb.com%2Fimages%2Fhigh%2Ftony-stark-handsome-smirk-f89t34kngar8z3bx.gif&f=1&nofb=1&ipt=c2ed0e409a30e7b07fa5eed32c7f7a10eae3f9394a5050fffc7eca4e14aacf96"
-          target="_blank"
-          rel="nofollow noopener noreferrer"
+const Footer = () => (
+  <StyledContainer>
+    <StyledSocial>
+      <StyledSocialList>
+        {socialMedia &&
+          socialMedia.map(({ name, url }, i) => (
+            <li key={i}>
+              <StyledSocialLink
+                href={url}
+                target="_blank"
+                rel="nofollow noopener noreferrer"
+                aria-label={name}
+              >
+                <FormattedIcon name={name} />
+              </StyledSocialLink>
+            </li>
+          ))}
+      </StyledSocialList>
+    </StyledSocial>
+    <StyledMetadata tabindex="-1">
+      <StyledGitHubLink
+        href="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fgifdb.com%2Fimages%2Fhigh%2Ftony-stark-handsome-smirk-f89t34kngar8z3bx.gif&f=1&nofb=1&ipt=c2ed0e409a30e7b07fa5eed32c7f7a10eae3f9394a5050fffc7eca4e14aacf96"
+        target="_blank"
+        rel="nofollow noopener noreferrer"
+      >
+        <div
+          style={{
+            textAlign: 'center',
+            marginTop: '120px',
+            fontSize: '14px',
+            color: '#888',
+            letterSpacing: '1px',
+            fontFamily: 'monospace',
+          }}
         >
           <div
             style={{
-              textAlign: 'center',
-              marginTop: '120px',
-              fontSize: '14px',
-              color: '#888',
-              letterSpacing: '1px',
-              fontFamily: 'monospace',
+              width: '60px',
+              height: '1px',
+              background: '#ffd500',
+              margin: '20px auto',
+              opacity: '0.5',
             }}
-          >
-            <div
-              style={{
-                width: '60px',
-                height: '1px',
-                background: '#ffd500',
-                margin: '20px auto',
-                opacity: '0.5',
-              }}
-            ></div>
-            Made with <span style={{ color: '#ffd500', fontWeight: 600 }}>Big D Energy ⚡</span>
-            <br />
-            <span style={{ fontSize: '12px', color: '#666' }}>© 2026 Yeshwanth Toluva</span>
-          </div>
-
-          {githubInfo.stars && githubInfo.forks && (
-            <StyledGitHubInfo>
-              <span>
-                <FormattedIcon name="Star" />
-                <span>{githubInfo.stars.toLocaleString()}</span>
-              </span>
-              <span>
-                <FormattedIcon name="Fork" />
-                <span>{githubInfo.forks.toLocaleString()}</span>
-              </span>
-            </StyledGitHubInfo>
-          )}
-        </StyledGitHubLink>
-      </StyledMetadata>
-    </StyledContainer>
-  );
-};
+          ></div>
+          Made with <span style={{ color: '#ffd500', fontWeight: 600 }}>Big D Energy ⚡</span>
+          <br />
+          <span style={{ fontSize: '12px', color: '#666' }}>© 2026 Yeshwanth Toluva</span>
+        </div>
+      </StyledGitHubLink>
+    </StyledMetadata>
+  </StyledContainer>
+);
 
 Footer.propTypes = {
   githubInfo: PropTypes.object,
