@@ -1,10 +1,8 @@
 ---
-title: 'Hello, my name is'
+title: "Hi, I'm"
 name: 'Yeshwanth Toluva'
-subtitle: 'I make things WORK!'
-buttonText: 'Hit Me!'
+subtitle: 'I build & automate infrastructure.'
+buttonText: 'Get In Touch'
 ---
 
-A passionate developer and cloud enthusiast ,AWS Certifed ,an IMPERFECT Student , with a knack for building innovative solutions.
-I specialize in Cloud Computing, System Administration. From crafting scalable architectures to developing intelligent systems, I love solving real-world problems.
-I'm currently a 2nd-year B.Tech Computer Science student, constantly learning and building exciting projects. Love to tinker something that I don't understand!
+AI + DevOps Engineer with hands-on experience deploying and automating infrastructure using Kubernetes, Docker, Terraform, and CI/CD pipelines. I implement observability stacks, debug cloud failures across distributed systems, and build AI agent workflows. Linux power user (Arch), AWS certified, and always learning.

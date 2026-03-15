@@ -2,21 +2,22 @@
 title: 'About Me'
 avatar: 'me.jpg'
 skills:
-  - Coding
-  - Binge Watching movies
-  - Gym
-  - Geopoltics
-  - Problem Solving
-  - Team Management
-  - Mentoring
+  - AWS (EC2, S3, Lambda, VPC)
+  - Kubernetes & Docker
+  - Terraform & CloudFormation
+  - CI/CD (GitHub Actions, Azure DevOps)
+  - Linux (Arch, Fedora, Ubuntu)
+  - Python & Bash Scripting
+  - Grafana, Prometheus & Tempo
+  - Nginx, Apache & MySQL
 ---
 
-Hello! I'm Yeshwanth.
+Hello! I'm Yeshwanth — an AI + DevOps Engineer based in Hyderabad, India.
 
-I am a passionate developer and cloud enthusiast with a knack for building innovative solutions. I specialize in Cloud Computing, Full-Stack Development, and System Administration. From crafting scalable architectures to developing intelligent systems, I love solving real-world problems.
+I specialize in deploying and automating cloud infrastructure, building CI/CD pipelines, and implementing observability stacks. I started programming at 15, got my AWS Cloud Practitioner at 17, earned a Diploma in Cloud Computing at 19, and passed the AWS Solutions Architect Associate at 20.
 
-I am currently pursuing my B.Tech in Computer Science and Engineering (CSE) (2nd year) at a top CS college. Alongside my studies, I actively work on projects related to AI/ML, cybersecurity, and gesture-based system control.
+Currently, I'm interning at [AI Planet](https://aiplanet.com/) where I work across DevOps, backend, and AI workflows — from setting up Prometheus + Grafana + Tempo observability to automating multi-environment deployments and building AI agent pipelines.
 
-I have earned AWS, Google, and IBM certifications and founded a student club to educate peers about cloud technologies. My contributions extend to open-source projects and hackathons, where I love collaborating and building impactful solutions.
+I'm pursuing my B.Tech in Computer Science at Keshav Memorial Institute of Technology, and I'm a daily Arch Linux user with a custom Hyprland setup. I love tinkering with things I don't fully understand yet.
 
-Here are a few other activities I love to do!
+Here are some technologies I work with:

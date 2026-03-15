@@ -1,10 +1,10 @@
 module.exports = {
   siteTitle: 'Yeshwanth Toluva',
   siteDescription:
-    'Yeshwanth Toluva is an incoming Software Developer, based in India, who loves learning new things and helping tech beginners.',
+    'Yeshwanth Toluva is an AI + DevOps Engineer with hands-on experience in Kubernetes, Docker, Terraform, CI/CD, and cloud infrastructure.',
   siteKeywords:
-    'Yeshwanth Toluva, Yeshwanth, Toluva, yeshwanthtoluva, software engineer, System Administrator, Cloud, python, java, Linux , Hyderabad',
-  siteUrl: 'https://yashitanamdeo.github.io/',
+    'Yeshwanth Toluva, DevOps Engineer, AI Engineer, AWS, Kubernetes, Docker, Terraform, CI/CD, Cloud, Linux, Arch Linux, Python, Hyderabad',
+  siteUrl: 'https://yeshwanthtoluva.vercel.app/',
   siteLanguage: 'en_US',
   googleAnalyticsID: 'UA-45666519-2',
   googleVerification: 'DCl7VAf9tcz6eD9gb67NfkNnJ1PKRNcg8qQiwpbx9Lk',
@@ -23,16 +23,8 @@ module.exports = {
       url: 'https://www.linkedin.com/in/yeshwanth-toluva-6b0335242/',
     },
     {
-      name: 'Codepen',
-      url: 'https://codepen.io/',
-    },
-    {
       name: 'Instagram',
       url: 'https://www.instagram.com/yeshwanth_toluva/',
-    },
-    {
-      name: 'Twitter',
-      url: 'https://twitter.com/',
     },
   ],
 
@@ -42,12 +34,16 @@ module.exports = {
       url: '/#about',
     },
     {
-      name: 'Certification',
+      name: 'Experience',
       url: '/#jobs',
     },
     {
       name: 'Projects',
       url: '/#projects',
+    },
+    {
+      name: 'Certifications',
+      url: '/#certifications',
     },
     {
       name: 'Contact',
@@ -59,8 +55,8 @@ module.exports = {
 
   colors: {
     green: '#ffd700',
-    navy: '#000000',
-    darkNavy: '#FFFFFF',
+    navy: '#0a0a0a',
+    darkNavy: '#000000',
   },
 
   srConfig: (delay = 200) => ({

@@ -1,6 +1,6 @@
 ---
 title: 'Get In Touch'
-buttonText: 'Hit Me'
+buttonText: 'Say Hello'
 ---
 
-My inbox is always open. Whether you have a question or just want to say hello, I'll try my best to get back to you! Feel free to mail me about any relevant job updates.
+I'm currently looking for DevOps, Cloud, and AI engineering opportunities. Whether you have a role in mind, a project to collaborate on, or just want to talk infrastructure — my inbox is always open.

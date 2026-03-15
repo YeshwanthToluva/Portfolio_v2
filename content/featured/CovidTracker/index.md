@@ -1,17 +1,15 @@
 ---
 date: '6'
-title: 'InSync'
+title: 'ArchMaster'
 cover: 'insync.png'
-github: 'https://github.com/YeshwanthToluva/insync-prototype'
-external: 'https://github.com/YeshwanthToluva/insync-prototype'
+github: 'https://github.com/YeshwanthToluva/Dotfiles-Iron_man'
+external: 'https://my-static-site-yeshwanth.s3.us-east-1.amazonaws.com/demo.html'
 tech:
-  - Node.js
-  - WebRTC
-  - Socket.IO
-  - Open Source
+  - Arch Linux
+  - Systemd
+  - Bash
+  - SSH
 showInProjects: true
 ---
 
-InSync is a collaborative music platform that lets friends listen together in real time, no matter the distance.  
-It works like a shared radio — you can hop into a room, vibe together, and even enable **karaoke mode** with live lyrics.  
-Free, open source, no ads, and no login — just music that keeps you connected.
+A private Arch Linux server for self-hosted services, fully automated with systemd services, Bash scripts, cron jobs, and SSH management. Features a custom riced Linux environment optimized for productivity and performance tuning.

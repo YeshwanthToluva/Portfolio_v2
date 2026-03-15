@@ -1,14 +1,15 @@
 ---
 date: '4'
-title: 'My Work Environment'
-cover: 'hs.png'
-github: 'https://github.com/YeshwanthToluva/Dotfiles-Iron_man'
-external: 'https://my-static-site-yeshwanth.s3.us-east-1.amazonaws.com/demo.html'
+title: 'ScholarWatch'
+cover: 'hs1.png'
+github: 'https://github.com/YeshwanthToluva'
+external: ''
 tech:
-  - Arch Linux
-  - Hyprland
-  - Open Source
+  - Selenium
+  - AWS Lambda
+  - CloudWatch
+  - SNS
 showInProjects: true
 ---
 
-Before diving into my projects, here's a glimpse of my daily workflow. I work on Arch Linux with a sleek Hyprland setup, customized for efficiency and aesthetics. This open-source environment keeps me in full control—lightweight, minimal, and tailored for deep focus.
+A real-time portal availability monitor built with Selenium, AWS Lambda, CloudWatch, and SNS. Configured alerts and fault detection for system stability, stored logs in DynamoDB, and automated incident notifications for immediate response.

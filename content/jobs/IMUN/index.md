@@ -1,9 +1,13 @@
 ---
-title: 'Google IT Automation with Python'
-company: 'Google IT Automation with Python'
-issuer: 'Coursera'
-date: '2024'
-url: 'https://www.credly.com/badges/56a5341e-808b-4618-aa3c-73acb293598f/linked_in_profile'
+date: '2022-04-01'
+title: 'Vice President - Cloud Community Club'
+company: 'Institute of Electronics'
+location: 'Hyderabad'
+range: 'April 2022 - April 2024'
+url: 'https://www.linkedin.com/in/yeshwanth-toluva-6b0335242/'
 ---
 
-Earned the Google IT Automation with Python Professional Certificate, demonstrating proficiency in Python scripting, IT automation, troubleshooting, Git, and cloud computing fundamentals.
+- Mentored 100+ students in Linux administration, AWS, DevOps, and networking basics
+- Organized hands-on labs for server configuration, firewall rules, troubleshooting, and automation
+- Managed workshops on infrastructure deployment and system monitoring
+- Supported club sponsorships and scaled activities to reach 500+ participants

@@ -1,9 +1,15 @@
 ---
-title: 'AWS Certified Cloud Practitioner'
-company: 'AWS Certified Cloud Practitioner'
-issuer: 'Amazon Web Services'
-date: 'December 2024'
-url: 'https://www.credly.com/badges/8eac0268-f96a-45fb-b6b5-67469bb0030b/linked_in_profile'
+date: '2025-09-01'
+title: 'DevOps + AI + Full Stack Intern'
+company: 'AI Planet'
+location: 'Remote'
+range: 'September 2025 - Present'
+url: 'https://aiplanet.com/'
 ---
 
-Demonstrated expertise in designing scalable, cost-efficient, and highly available cloud solutions on AWS. Proficient in architectural best practices, AWS services, security, and performance optimization.
+- Designed and deployed an observability stack (Prometheus + Grafana + Tempo tracing), enabling fast root-cause analysis and <1 min incident diagnosis
+- Automated deployments using GitHub Actions + Azure DevOps (CI/CD), enabling versioned artifact publishing with zero manual intervention
+- Migrated internal framework from Autogen to Microsoft Agent Framework; built a customized internal SDK and published via Azure Artifacts
+- Debugged production issues end-to-end across cloud, backend, and CI layers (networking, container logs, CORS/401 errors, build failures)
+- Implemented multi-environment deployments (dev → staging → prod) and standardized branching + versioning for clean release cycles
+- Built internal AI agent workflows using AWF (tools, RAG pipelines, multi-agent orchestration) integrating backend events and API triggers
