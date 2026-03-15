@@ -1,7 +1,7 @@
 ---
 date: '6'
 title: 'ArchMaster'
-cover: 'insync.png'
+cover: 'hs.png'
 github: 'https://github.com/YeshwanthToluva/Dotfiles-Iron_man'
 external: 'https://my-static-site-yeshwanth.s3.us-east-1.amazonaws.com/demo.html'
 tech:

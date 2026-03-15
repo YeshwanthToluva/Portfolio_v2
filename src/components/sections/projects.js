@@ -31,10 +31,13 @@ const StyledCard = styled.a`
   height: 100%;
   background-color: ${colors.lightNavy};
   border-radius: ${theme.borderRadius};
-  transition: ${theme.transition};
+  border: 1px solid transparent;
+  transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
   &:hover,
   &:focus {
-    transform: translateY(-5px);
+    transform: translateY(-7px);
+    border-color: rgba(255, 215, 0, 0.3);
+    box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5), 0 0 20px rgba(255, 215, 0, 0.1);
   }
 `;
 const StyledCardHeader = styled.div`

@@ -6,6 +6,7 @@ node_modules/
 
 # Gatsby files
 .cache/
+public/
 
 # Logs & Debugging
 npm-debug.log*

@@ -1,15 +1,15 @@
 ---
 date: '5'
-title: 'AWS Lightsail Deployment'
+title: 'ASTRA'
 cover: 'astra.png'
-github: 'https://github.com/YeshwanthToluva'
-external: ''
+github: 'https://github.com/YeshwanthToluva/ASTRA_v2'
+external: 'https://github.com/YeshwanthToluva/ASTRA_v2'
 tech:
-  - AWS Lightsail
-  - Apache/Nginx
-  - Route 53
-  - CloudWatch
+  - Mediapipe
+  - Computer Vision
+  - TensorFlow/Keras
+  - Open Source
 showInProjects: true
 ---
 
-Deployed WordPress on Linux servers (Apache/Nginx, MySQL) with DNS management via Route 53 and automated SSL. Configured firewalls, automated backups, and monitoring with CloudWatch. Ensured fault-tolerant hosting with near-zero downtime for the Cloud Community Club website.
+ASTRA is a real-time gesture recognition system that translates hand movements into text and speech. It's designed to support inclusive communication for individuals with speech or hearing impairments. Built with deep learning and computer vision, ASTRA uses custom-trained models to achieve high accuracy in recognizing complex gestures, making interaction seamless and accessible.
