@@ -103,11 +103,33 @@ const Footer = () => {
       </StyledSocial>
       <StyledMetadata tabindex="-1">
         <StyledGitHubLink
-          href="https://media.makeameme.org/created/btw-i-use.jpg"
+          href="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fgifdb.com%2Fimages%2Fhigh%2Ftony-stark-handsome-smirk-f89t34kngar8z3bx.gif&f=1&nofb=1&ipt=c2ed0e409a30e7b07fa5eed32c7f7a10eae3f9394a5050fffc7eca4e14aacf96"
           target="_blank"
           rel="nofollow noopener noreferrer"
         >
-          <div>Click me</div>
+          <div
+            style={{
+              textAlign: 'center',
+              marginTop: '120px',
+              fontSize: '14px',
+              color: '#888',
+              letterSpacing: '1px',
+              fontFamily: 'monospace',
+            }}
+          >
+            <div
+              style={{
+                width: '60px',
+                height: '1px',
+                background: '#ffd500',
+                margin: '20px auto',
+                opacity: '0.5',
+              }}
+            ></div>
+            Made with <span style={{ color: '#ffd500', fontWeight: 600 }}>Big D Energy ⚡</span>
+            <br />
+            <span style={{ fontSize: '12px', color: '#666' }}>© 2026 Yeshwanth Toluva</span>
+          </div>
 
           {githubInfo.stars && githubInfo.forks && (
             <StyledGitHubInfo>
