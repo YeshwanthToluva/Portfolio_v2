@@ -58,20 +58,27 @@ const StyledContainer = styled(Section)`
   ${media.tablet`
     flex-direction: column;
     justify-content: center;
-    padding-top: 110px;
-    padding-bottom: 80px;
+    /* Override the inherited align-items: center — in a column it was
+       shrink-wrapping the text block to the name's width and centering it,
+       which pushed the content off both screen edges. Stretch = full width. */
+    align-items: stretch;
+    text-align: left;
+    box-sizing: border-box;
+    /* Side padding so text doesn't bleed to the edge (the Section has none). */
+    padding: 110px 50px 80px;
     /* svh = small viewport height: stays fixed as the mobile address bar
        shows/hides, so the hero never resize-jumps or overflows. */
     min-height: 100vh;
     min-height: 100svh;
   `};
   ${media.phablet`
-    padding-top: 100px;
-    padding-bottom: 100px;
+    padding: 100px 25px 90px;
   `};
   ${media.phone`
-    padding-top: 90px;
-    padding-bottom: 90px;
+    padding: 90px 20px 80px;
+  `};
+  ${media.tiny`
+    padding: 90px 16px 80px;
   `};
 `;
 const StyledLeftContent = styled.div`
@@ -84,7 +91,13 @@ const StyledLeftContent = styled.div`
   div {
     width: 100%;
   }
-  ${media.tablet`flex: 1; width: 100%;`};
+  ${media.tablet`
+    flex: 1;
+    width: 100%;
+    max-width: 100%;
+    /* align-items left at default (stretch) so children fill the full width
+       and don't shrink-wrap; text-align on the container handles alignment. */
+  `};
 `;
 const StyledRightContent = styled.div`
   flex: 0.9;
@@ -153,7 +166,9 @@ const StyledTitle = styled.h2`
   -webkit-text-fill-color: transparent;
   background-clip: text;
   animation: ${shimmer} 5s linear infinite, ${glitchFlash} 0.45s ease 2.8s 1 both;
-  word-break: break-word;
+  width: 100%;
+  /* Break only between words, never mid-word — word-break: break-word was
+     collapsing the name to one letter per line when the column was narrow. */
   overflow-wrap: break-word;
   ${media.desktop`font-size: 70px;`};
   ${media.tablet`font-size: 50px;`};
