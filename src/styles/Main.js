@@ -22,6 +22,10 @@ const Main = styled.main`
     padding-top: 125px;
     padding-bottom: 125px;
   `};
+  ${media.phone`
+    padding-top: 100px;
+    padding-bottom: 100px;
+  `};
 
   &.fillHeight {
     padding-top: 0;

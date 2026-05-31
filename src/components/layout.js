@@ -2,8 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { StaticQuery, graphql } from 'gatsby';
 import PropTypes from 'prop-types';
 import { Head, Loader, Nav, Social, Email, Footer } from '@components';
+import Veronica from '@components/veronica';
+import Cursor from '@components/cursor';
+import MobileNav from '@components/mobile-nav';
 import styled from 'styled-components';
-import { GlobalStyle, theme } from '@styles';
+import { GlobalStyle, theme, media } from '@styles';
 const { colors, fontSizes, fonts } = theme;
 
 // https://medium.com/@chrisfitkin/how-to-smooth-scroll-links-in-gatsby-3dc445299558
@@ -45,6 +48,9 @@ const StyledContent = styled.div`
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  ${media.tablet`
+    padding-bottom: 60px;
+  `};
 `;
 
 const Layout = ({ children, location }) => {
@@ -96,10 +102,13 @@ const Layout = ({ children, location }) => {
               <Social isHome={isHome} />
               <Email isHome={isHome} />
 
-              <div id="content">
+              <div id="content" style={{ paddingBottom: 0 }}>
                 {children}
                 <Footer />
               </div>
+              <MobileNav />
+              <Veronica />
+              <Cursor />
             </StyledContent>
           )}
         </div>

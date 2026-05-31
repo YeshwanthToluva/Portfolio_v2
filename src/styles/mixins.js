@@ -119,6 +119,7 @@ const mixins = {
     ${media.desktop`padding: 0 100px;`};
     ${media.tablet`padding: 0 50px;`};
     ${media.phablet`padding: 0 25px;`};
+    ${media.tiny`padding: 0 16px;`};
   `,
 
   boxShadow: css`

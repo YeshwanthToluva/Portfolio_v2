@@ -35,7 +35,8 @@ const Sidebar = styled.aside`
   box-shadow: -10px 0px 30px -15px ${colors.shadowNavy};
   ${media.thone`padding: 25px;`};
   ${media.phablet`width: 75vw;`};
-  ${media.tiny`padding: 10px;`};
+  ${media.phone`width: 85vw;`};
+  ${media.tiny`width: 90vw; padding: 10px;`};
 `;
 const NavLinks = styled.nav`
   ${mixins.flexBetween};
@@ -72,6 +73,10 @@ const NavLink = styled(Link)`
   ${mixins.link};
   padding: 3px 20px 20px;
   width: 100%;
+  ${media.phablet`
+    padding: 8px 20px 16px;
+    min-height: 44px;
+  `};
 `;
 const ResumeLink = styled.a`
   ${mixins.bigButton};
@@ -96,7 +101,8 @@ const Menu = ({ menuOpen, toggleMenu }) => {
       menuOpen={menuOpen}
       onClick={handleMenuClick}
       aria-hidden={!menuOpen}
-      tabIndex={menuOpen ? 1 : -1}>
+      tabIndex={menuOpen ? 1 : -1}
+    >
       <Sidebar>
         <NavLinks>
           <NavList>

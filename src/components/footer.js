@@ -13,6 +13,8 @@ const StyledContainer = styled.footer`
   text-align: center;
   height: auto;
   min-height: 70px;
+  ${media.tablet`padding-bottom: 80px;`};
+  ${media.phablet`padding-bottom: 75px;`};
 `;
 const StyledSocial = styled.div`
   color: ${colors.lightSlate};
@@ -73,7 +75,7 @@ const Footer = () => (
         <div
           style={{
             textAlign: 'center',
-            marginTop: '120px',
+            marginTop: '60px',
             fontSize: '14px',
             color: '#888',
             letterSpacing: '1px',

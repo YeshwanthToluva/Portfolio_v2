@@ -37,10 +37,16 @@ const StyledTitle = styled.h4`
   font-size: 60px;
   ${media.desktop`font-size: 50px;`};
   ${media.tablet`font-size: 40px;`};
+  ${media.phone`font-size: 32px;`};
 `;
 const StyledEmailLink = styled.a`
   ${mixins.bigButton};
   margin-top: 50px;
+  ${media.phablet`
+    margin-top: 35px;
+    padding: 16px 32px;
+    min-height: 48px;
+  `};
 `;
 
 const Contact = ({ data }) => {

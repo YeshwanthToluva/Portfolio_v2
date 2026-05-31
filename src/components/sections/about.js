@@ -30,6 +30,7 @@ const SkillsContainer = styled.ul`
   padding: 0;
   margin: 20px 0 0 0;
   list-style: none;
+  ${media.tiny`grid-template-columns: repeat(2, 1fr);`};
 `;
 const Skill = styled.li`
   position: relative;
@@ -74,6 +75,7 @@ const StyledAvatarLink = styled.a`
   border-radius: ${theme.borderRadius};
   background-color: ${colors.lightestSlate};
   margin-left: -20px;
+  ${media.tablet`margin-left: 0;`};
   &:hover,
   &:focus {
     background: transparent;

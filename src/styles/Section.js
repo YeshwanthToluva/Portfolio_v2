@@ -7,6 +7,8 @@ const Section = styled.section`
   max-width: 1000px;
 
   ${media.tablet`padding: 100px 0;`};
+  ${media.phablet`padding: 70px 0;`};
+  ${media.phone`padding: 60px 0;`};
 `;
 
 export default Section;

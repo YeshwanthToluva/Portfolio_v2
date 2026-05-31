@@ -18,6 +18,26 @@ const cursorBlink = keyframes`
   0%, 100% { opacity: 1; }
   50% { opacity: 0; }
 `;
+const breathe = keyframes`
+  0%, 100% { opacity: 0.06; transform: translate(-50%, -60%) scale(1); }
+  50% { opacity: 0.13; transform: translate(-50%, -60%) scale(1.15); }
+`;
+const bounce = keyframes`
+  0%, 100% { transform: translateY(0); opacity: 0.5; }
+  50% { transform: translateY(9px); opacity: 0.9; }
+`;
+const fadeInUp = keyframes`
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+`;
+const glitchFlash = keyframes`
+  0%   { transform: none;                        filter: none; }
+  18%  { transform: skewX(-11deg) translateX(-3px); filter: brightness(1.5) blur(0.5px); }
+  36%  { transform: skewX(7deg) translateX(2px); filter: brightness(1.2); }
+  54%  { transform: skewX(-3deg) translateX(-1px); filter: none; }
+  72%  { transform: skewX(1deg); }
+  100% { transform: none;                        filter: none; }
+`;
 
 const StyledContainer = styled(Section)`
   ${mixins.flexCenter};
@@ -26,7 +46,33 @@ const StyledContainer = styled(Section)`
   min-height: 100vh;
   position: relative;
   overflow: hidden;
-  ${media.tablet`flex-direction: column; padding-top: 150px;`};
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.72' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+    opacity: 0.028;
+    pointer-events: none;
+    z-index: 0;
+  }
+  ${media.tablet`
+    flex-direction: column;
+    justify-content: center;
+    padding-top: 110px;
+    padding-bottom: 80px;
+    /* svh = small viewport height: stays fixed as the mobile address bar
+       shows/hides, so the hero never resize-jumps or overflows. */
+    min-height: 100vh;
+    min-height: 100svh;
+  `};
+  ${media.phablet`
+    padding-top: 100px;
+    padding-bottom: 100px;
+  `};
+  ${media.phone`
+    padding-top: 90px;
+    padding-bottom: 90px;
+  `};
 `;
 const StyledLeftContent = styled.div`
   flex: 1.1;
@@ -34,9 +80,11 @@ const StyledLeftContent = styled.div`
   flex-direction: column;
   justify-content: center;
   z-index: 2;
+  min-width: 0;
   div {
     width: 100%;
   }
+  ${media.tablet`flex: 1; width: 100%;`};
 `;
 const StyledRightContent = styled.div`
   flex: 0.9;
@@ -46,11 +94,19 @@ const StyledRightContent = styled.div`
   overflow: hidden;
   margin-top: -120px;
   ${media.desktop`height: 350px; margin-top: -80px;`};
-  ${media.tablet`width: 100%; height: 280px; margin-top: 0;`};
-  ${media.phablet`display: none;`};
+  ${media.tablet`
+    width: 100%;
+    height: 220px;
+    margin-top: -10px;
+    flex: none;
+  `};
+  ${media.phablet`height: 180px; margin-top: 16px;`};
+  ${media.phone`display: none;`};
 `;
 const StyledSpotlight = styled.div`
   position: absolute;
+  top: 0;
+  left: 0;
   pointer-events: none;
   width: 600px;
   height: 600px;
@@ -61,7 +117,10 @@ const StyledSpotlight = styled.div`
     rgba(255, 215, 0, 0.02) 30%,
     transparent 70%
   );
-  transform: translate(-50%, -50%);
+  /* Positioned imperatively via transform (see Hero) to avoid React re-renders. */
+  transform: translate(-1000px, -1000px);
+  opacity: 0;
+  will-change: transform;
   z-index: 0;
 `;
 const StyledOverline = styled.h1`
@@ -93,10 +152,12 @@ const StyledTitle = styled.h2`
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  animation: ${shimmer} 5s linear infinite;
+  animation: ${shimmer} 5s linear infinite, ${glitchFlash} 0.45s ease 2.8s 1 both;
+  word-break: break-word;
+  overflow-wrap: break-word;
   ${media.desktop`font-size: 70px;`};
-  ${media.tablet`font-size: 60px;`};
-  ${media.phablet`font-size: 50px;`};
+  ${media.tablet`font-size: 50px;`};
+  ${media.phablet`font-size: 44px;`};
   ${media.phone`font-size: 40px;`};
 `;
 const StyledSubtitle = styled.h3`
@@ -107,9 +168,9 @@ const StyledSubtitle = styled.h3`
   z-index: 1;
   min-height: 130px;
   ${media.desktop`font-size: 45px; min-height: 110px;`};
-  ${media.tablet`font-size: 40px; min-height: 100px;`};
-  ${media.phablet`font-size: 35px; min-height: 85px;`};
-  ${media.phone`font-size: 28px; min-height: 70px;`};
+  ${media.tablet`font-size: 35px; min-height: 85px;`};
+  ${media.phablet`font-size: 24px; min-height: 60px;`};
+  ${media.phone`font-size: 20px; min-height: 50px;`};
 `;
 const StyledCursor = styled.span`
   color: ${colors.green};
@@ -121,6 +182,7 @@ const StyledDescription = styled.div`
   max-width: 500px;
   position: relative;
   z-index: 1;
+  ${media.tablet`max-width: 100%;`};
   a {
     ${mixins.inlineLink};
   }
@@ -136,6 +198,13 @@ const StyledEmailLink = styled.a`
     box-shadow: 0 0 20px ${colors.green}, 0 0 50px rgba(255, 215, 0, 0.4);
     background-color: rgba(255, 215, 0, 0.1);
   }
+  ${media.phablet`
+    margin-top: 32px;
+    font-size: 13px;
+    padding: 16px 32px;
+    border-radius: 50px;
+    min-height: 48px;
+  `};
 `;
 
 const livePulse = keyframes`
@@ -179,10 +248,82 @@ const StyledNowText = styled.span`
   color: ${colors.lightSlate};
   white-space: nowrap;
   letter-spacing: 0.02em;
+  ${media.phablet`white-space: normal; font-size: 11px;`};
   span {
     color: ${colors.green};
     font-weight: 600;
   }
+`;
+
+const StyledMobileGlow = styled.div`
+  display: none;
+  ${media.phablet`
+    display: block;
+    position: absolute;
+    width: 320px;
+    height: 320px;
+    border-radius: 50%;
+    background: radial-gradient(circle at center, ${colors.green} 0%, transparent 70%);
+    top: 38%;
+    left: 50%;
+    transform: translate(-50%, -60%);
+    animation: ${breathe} 4s ease-in-out infinite;
+    pointer-events: none;
+    z-index: 0;
+    filter: blur(50px);
+  `};
+`;
+const StyledScrollHint = styled.div`
+  display: none;
+  ${media.phablet`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    margin-top: 48px;
+    color: rgba(255, 215, 0, 0.45);
+    font-family: ${fonts.SFMono};
+    font-size: 9px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    animation: ${bounce} 2.2s ease-in-out infinite;
+    z-index: 1;
+    position: relative;
+    user-select: none;
+  `};
+  span.arrow {
+    font-size: 16px;
+    line-height: 1;
+  }
+`;
+const StyledMobileTag = styled.div`
+  display: none;
+  ${media.phablet`
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: ${fonts.SFMono};
+    font-size: 11px;
+    color: rgba(255, 215, 0, 0.5);
+    letter-spacing: 0.12em;
+    margin-bottom: 16px;
+    z-index: 1;
+    position: relative;
+    animation: ${fadeInUp} 0.7s ease both;
+    animation-delay: 50ms;
+    &::before {
+      content: '';
+      width: 20px;
+      height: 1px;
+      background: rgba(255, 215, 0, 0.35);
+    }
+    &::after {
+      content: '';
+      width: 20px;
+      height: 1px;
+      background: rgba(255, 215, 0, 0.35);
+    }
+  `};
 `;
 
 const phrases = [
@@ -224,9 +365,9 @@ const WorkflowAnimation = () => {
       const tl = gsap.timeline({ repeat: -1, repeatDelay: 1 });
 
       // ═══ RESET ALL ═══
-      tl.set($('#termStage'), { x: 0, opacity: 1 })
-        .set($('#cloudStage'), { x: 500, opacity: 1 })
-        .set($('#agentStage'), { x: 500, opacity: 1 })
+      tl.set($('#termStage'), { xPercent: 0, opacity: 1 })
+        .set($('#cloudStage'), { xPercent: 110, opacity: 1 })
+        .set($('#agentStage'), { xPercent: 110, opacity: 1 })
         .set($$('.tl'), { opacity: 0 })
         .set($('#termCursor'), { opacity: 0 })
         .set($('#termPulse'), { scale: 0, opacity: 0, transformOrigin: '460 200' })
@@ -235,14 +376,18 @@ const WorkflowAnimation = () => {
         .set($$('.cb'), { strokeDashoffset: 100 })
         .set($$('.cn'), { opacity: 0, scale: 0, transformOrigin: 'center' })
         .set($$('.cpulse'), { opacity: 0 })
-        .set($('#cloudPulseRing'), { scale: 0, opacity: 0, transformOrigin: '270 160' })
+        .set($$('.rackFill'), { attr: { width: 0 } })
+        .set($$('.rackLed'), { opacity: 0.15 })
+        .set($$('.rackLed2'), { opacity: 0.1 })
+        .set($$('.rackStatus'), { opacity: 0.15 })
+        .set($('#cloudPulseRing'), { scale: 0, opacity: 0, transformOrigin: '250 180' })
         .set($('#exitLine2'), { strokeDashoffset: 500 })
         .set($$('.wn'), { opacity: 0, scale: 0, transformOrigin: 'center' })
         .set($$('.wl'), { strokeDashoffset: 200, opacity: 0 })
         .set($$('.wp'), { opacity: 0, scale: 0, transformOrigin: 'center' })
         .set($$('.wcheck'), { opacity: 0 })
         .set($('#resultLine'), { strokeDashoffset: 100 })
-        .set($('#robotStage'), { x: 500, opacity: 1 })
+        .set($('#robotStage'), { xPercent: 110, opacity: 1 })
         .set($('#robotBody'), { opacity: 0, scale: 0, transformOrigin: '250 180' })
         .set($('#eyeL'), { opacity: 0 })
         .set($('#eyeR'), { opacity: 0 })
@@ -270,35 +415,73 @@ const WorkflowAnimation = () => {
         // Exit line shoots right
         .to($('#exitLine'), { strokeDashoffset: 0, duration: 0.4, ease: 'power2.in' })
         // Terminal slides LEFT out of frame
-        .to($('#termStage'), { x: -500, duration: 0.7, ease: 'power3.inOut' })
+        .to($('#termStage'), { xPercent: -110, duration: 0.7, ease: 'power3.inOut' })
         // Cloud slides IN from right simultaneously
-        .to($('#cloudStage'), { x: 0, duration: 0.7, ease: 'power3.inOut' }, '<');
+        .to($('#cloudStage'), { xPercent: 0, duration: 0.7, ease: 'power3.inOut' }, '<');
 
       // ═══════════════════════════════
-      // STAGE 2: CLOUD (full frame)
+      // STAGE 2: CLOUD / SERVER RACK
       // ═══════════════════════════════
       // Entry line draws in
       tl.to($('#entryLine'), { strokeDashoffset: 0, duration: 0.3, ease: 'power2.out' })
-        // Cloud hub pulses
-        .to($('#cloudPulseRing'), { scale: 3, opacity: 0.3, duration: 0.4, ease: 'power2.out' })
+        // Pulse ring on rack
+        .to($('#cloudPulseRing'), { scale: 3, opacity: 0.3, duration: 0.3, ease: 'power2.out' })
         .to($('#cloudPulseRing'), { scale: 5, opacity: 0, duration: 0.3, ease: 'power2.out' })
-        // Branch lines shoot out
-        .to($$('.cb'), { strokeDashoffset: 0, duration: 0.3, stagger: 0.06, ease: 'power2.out' })
-        // Nodes pop in
-        .to($$('.cn'), { opacity: 1, scale: 1, duration: 0.2, stagger: 0.04, ease: 'back.out(3)' })
-        // Nodes pulse (processing)
-        .to($$('.cn'), { scale: 1.15, duration: 0.15, stagger: 0.03, ease: 'power2.out' })
-        .to($$('.cn'), { scale: 1, duration: 0.2, stagger: 0.03, ease: 'power2.inOut' })
-        // Pulse particles become visible (they auto-animate via SVG animateMotion)
-        .to($$('.cpulse'), { opacity: 1, duration: 0.2, ease: 'power2.out' })
-        .to({}, { duration: 0.8 })
-        // Hide pulses before exit
-        .to($$('.cpulse'), { opacity: 0, duration: 0.2, ease: 'power2.in' })
-        // Exit line shoots right
+        // Rack units light up sequentially — processing cascade
+        .to($$('.rackFill'), {
+          attr: { width: 138 },
+          duration: 0.25,
+          stagger: 0.12,
+          ease: 'power2.out',
+        })
+        .to(
+          $$('.rackLed'),
+          { opacity: 0.9, duration: 0.1, stagger: 0.1, ease: 'power2.out' },
+          '-=0.6',
+        )
+        .to(
+          $$('.rackLed2'),
+          { opacity: 0.7, duration: 0.1, stagger: 0.1, ease: 'power2.out' },
+          '-=0.5',
+        )
+        // Rack borders glow
+        .to(
+          $$('.rackBox'),
+          {
+            attr: { stroke: 'rgba(255,215,0,0.6)' },
+            duration: 0.15,
+            stagger: 0.1,
+            ease: 'power2.out',
+          },
+          '-=0.5',
+        )
+        // Branch lines shoot out to service pills
+        .to($$('.cb'), { strokeDashoffset: 0, duration: 0.25, stagger: 0.06, ease: 'power2.out' })
+        // Service pills pop in
+        .to($$('.cn'), {
+          opacity: 1,
+          scale: 1,
+          duration: 0.2,
+          stagger: 0.05,
+          ease: 'back.out(2.5)',
+        })
+        // Pulse particles flow from rack to services
+        .to($$('.cpulse'), { opacity: 1, duration: 0.15, ease: 'power2.out' })
+        // Hold — rack is processing
+        .to({}, { duration: 0.6 })
+        // Cleanup — fills drain, pulses fade
+        .to($$('.rackFill'), {
+          attr: { width: 0 },
+          duration: 0.3,
+          stagger: 0.05,
+          ease: 'power2.in',
+        })
+        .to($$('.cpulse'), { opacity: 0, duration: 0.2, ease: 'power2.in' }, '-=0.2')
+        // Exit line
         .to($('#exitLine2'), { strokeDashoffset: 0, duration: 0.3, ease: 'power2.in' })
-        // Cloud slides LEFT, Agent slides IN
-        .to($('#cloudStage'), { x: -500, duration: 0.7, ease: 'power3.inOut' })
-        .to($('#agentStage'), { x: 0, duration: 0.7, ease: 'power3.inOut' }, '<');
+        // Slide out
+        .to($('#cloudStage'), { xPercent: -110, duration: 0.7, ease: 'power3.inOut' })
+        .to($('#agentStage'), { xPercent: 0, duration: 0.7, ease: 'power3.inOut' }, '<');
 
       // ═══════════════════════════════════
       // STAGE 3: AGENTIC WORKFLOW (full frame)
@@ -330,8 +513,8 @@ const WorkflowAnimation = () => {
         // Exit line from deploy node
         .to($('#exitLine3'), { strokeDashoffset: 0, duration: 0.3, ease: 'power2.in' }, '+=0.3')
         // Agent slides LEFT, Robot slides IN
-        .to($('#agentStage'), { x: -500, duration: 0.7, ease: 'power3.inOut' })
-        .to($('#robotStage'), { x: 0, duration: 0.7, ease: 'power3.inOut' }, '<');
+        .to($('#agentStage'), { xPercent: -110, duration: 0.7, ease: 'power3.inOut' })
+        .to($('#robotStage'), { xPercent: 0, duration: 0.7, ease: 'power3.inOut' }, '<');
 
       // ═══════════════════════════════
       // STAGE 4: ROBOT — AI Agent Done
@@ -575,16 +758,16 @@ const WorkflowAnimation = () => {
       </g>
 
       {/* ════════════════════════════════
-           STAGE 2: CLOUD HUB (fills frame)
+           STAGE 2: CLOUD / SERVER RACK (fills frame)
          ════════════════════════════════ */}
       <g id="cloudStage">
-        {/* Entry line from left → into port */}
+        {/* Entry line from left */}
         <line
           id="entryLine"
           x1="-20"
-          y1="165"
-          x2="148"
-          y2="165"
+          y1="180"
+          x2="80"
+          y2="180"
           stroke="#ffd700"
           strokeWidth="2.5"
           filter="url(#g2)"
@@ -592,99 +775,11 @@ const WorkflowAnimation = () => {
           strokeDashoffset="500"
         />
 
-        {/* Entry port — circular connector on left of cloud */}
-        <circle
-          cx="155"
-          cy="165"
-          r="7"
-          fill="rgba(255,215,0,0.08)"
-          stroke="#ffd700"
-          strokeWidth="1.5"
-          filter="url(#g1)"
-        />
-        <circle cx="155" cy="165" r="3" fill="#ffd700" filter="url(#g2)" opacity="0.6" />
-
-        {/* ── LARGE CLOUD SHAPE ── */}
-        {/* Outer glow aura */}
-        <ellipse
-          cx="270"
-          cy="150"
-          rx="120"
-          ry="70"
-          fill="none"
-          stroke="rgba(255,215,0,0.04)"
-          strokeWidth="30"
-          filter="url(#g3)"
-        />
-        {/* Main cloud outline — clean, large, rounded bumps */}
-        <path
-          d="M160,185 C155,155 175,125 210,118 C225,95 260,85 280,100 C300,82 335,90 345,112 C370,115 385,135 380,160 C390,180 375,198 350,200 L190,200 C165,200 155,195 160,185 Z"
-          fill="rgba(255,215,0,0.03)"
-          stroke="#ffd700"
-          strokeWidth="2"
-          filter="url(#g2)"
-        />
-        {/* Inner ring for depth */}
-        <path
-          d="M178,183 C175,162 190,140 215,135 C228,118 255,110 272,120 C288,108 315,114 322,130 C340,132 350,148 347,165 C353,178 343,190 325,192 L200,192 C182,192 175,190 178,183 Z"
-          fill="none"
-          stroke="rgba(255,215,0,0.15)"
-          strokeWidth="0.8"
-        />
-
-        {/* AWS logo text inside */}
-        <text
-          x="270"
-          y="148"
-          textAnchor="middle"
-          fill="#ffd700"
-          fontSize="14"
-          fontFamily="monospace"
-          fontWeight="bold"
-          opacity="0.7"
-        >
-          AWS
-        </text>
-        <text
-          x="270"
-          y="165"
-          textAnchor="middle"
-          fill="rgba(255,215,0,0.4)"
-          fontSize="8"
-          fontFamily="monospace"
-        >
-          cloud compute
-        </text>
-
-        {/* Blinking status indicators */}
-        <circle cx="215" cy="175" r="2" fill="#ffd700">
-          <animate
-            attributeName="opacity"
-            values="0.3;0.9;0.3"
-            dur="1.1s"
-            repeatCount="indefinite"
-          />
-        </circle>
-        <circle cx="245" cy="178" r="2" fill="#ffd700">
-          <animate attributeName="opacity" values="0.5;1;0.5" dur="0.8s" repeatCount="indefinite" />
-        </circle>
-        <circle cx="295" cy="178" r="2" fill="#ffd700">
-          <animate
-            attributeName="opacity"
-            values="0.2;0.7;0.2"
-            dur="1.4s"
-            repeatCount="indefinite"
-          />
-        </circle>
-        <circle cx="325" cy="175" r="2" fill="#ffd700">
-          <animate attributeName="opacity" values="0.4;0.9;0.4" dur="1s" repeatCount="indefinite" />
-        </circle>
-
-        {/* Pulse ring from center */}
+        {/* Pulse ring */}
         <circle
           id="cloudPulseRing"
-          cx="270"
-          cy="160"
+          cx="250"
+          cy="180"
           r="12"
           fill="none"
           stroke="#ffd700"
@@ -692,170 +787,333 @@ const WorkflowAnimation = () => {
           opacity="0"
         />
 
-        {/* ── BÉZIER BRANCHES radiating from bottom of cloud ── */}
+        {/* ── MAIN SERVER RACK ── */}
+        <rect
+          x="85"
+          y="70"
+          width="160"
+          height="230"
+          rx="6"
+          fill="rgba(255,215,0,0.02)"
+          stroke="#ffd700"
+          strokeWidth="1.5"
+          filter="url(#g1)"
+        />
+        {/* Rack title */}
+        <text
+          x="165"
+          y="62"
+          textAnchor="middle"
+          fill="rgba(255,215,0,0.35)"
+          fontSize="8"
+          fontFamily="monospace"
+        >
+          AWS us-east-1
+        </text>
+
+        {/* Server units — 5 rack units */}
+        {[90, 130, 170, 210, 250].map((y, i) => (
+          <g key={`rack-${i}`} className="rackUnit">
+            <rect
+              x="95"
+              y={y}
+              width="140"
+              height="30"
+              rx="3"
+              fill="rgba(255,215,0,0.03)"
+              stroke="rgba(255,215,0,0.25)"
+              strokeWidth="0.8"
+              className="rackBox"
+            />
+            {/* Processing fill bar — starts at 0 width, GSAP animates it */}
+            <rect
+              x="96"
+              y={y + 1}
+              width="0"
+              height="28"
+              rx="2"
+              fill="rgba(255,215,0,0.08)"
+              className="rackFill"
+            />
+            {/* LED indicators */}
+            <circle
+              cx="108"
+              cy={y + 15}
+              r="2.5"
+              fill="#ffd700"
+              className="rackLed"
+              opacity="0.15"
+            />
+            <circle
+              cx="118"
+              cy={y + 15}
+              r="2.5"
+              fill="#ffd700"
+              className="rackLed2"
+              opacity="0.1"
+            />
+            {/* Drive activity lines */}
+            <line
+              x1="130"
+              y1={y + 10}
+              x2="225"
+              y2={y + 10}
+              stroke="rgba(255,215,0,0.08)"
+              strokeWidth="0.5"
+            />
+            <line
+              x1="130"
+              y1={y + 15}
+              x2="225"
+              y2={y + 15}
+              stroke="rgba(255,215,0,0.08)"
+              strokeWidth="0.5"
+            />
+            <line
+              x1="130"
+              y1={y + 20}
+              x2="225"
+              y2={y + 20}
+              stroke="rgba(255,215,0,0.08)"
+              strokeWidth="0.5"
+            />
+            {/* Status text */}
+            <text
+              x="228"
+              y={y + 18}
+              textAnchor="end"
+              fill="rgba(255,215,0,0.15)"
+              fontSize="5"
+              fontFamily="monospace"
+              className="rackStatus"
+            >
+              idle
+            </text>
+          </g>
+        ))}
+
+        {/* ── SERVICE LABELS on right side ── */}
+        {/* Lines from rack to service labels */}
         <path
           className="cb"
-          d="M210,200 C200,230 160,250 120,270"
+          d="M245,105 C280,105 290,85 320,85"
           fill="none"
           stroke="#ffd700"
-          strokeWidth="1.2"
+          strokeWidth="1"
           filter="url(#g1)"
           strokeDasharray="100"
           strokeDashoffset="100"
         />
         <path
           className="cb"
-          d="M240,200 C235,235 215,260 195,285"
+          d="M245,145 C280,145 290,135 320,135"
           fill="none"
           stroke="#ffd700"
-          strokeWidth="1.2"
+          strokeWidth="1"
           filter="url(#g1)"
           strokeDasharray="100"
           strokeDashoffset="100"
         />
         <path
           className="cb"
-          d="M270,200 C270,240 270,265 270,295"
+          d="M245,185 C280,185 290,185 320,185"
           fill="none"
           stroke="#ffd700"
-          strokeWidth="1.2"
+          strokeWidth="1"
           filter="url(#g1)"
           strokeDasharray="100"
           strokeDashoffset="100"
         />
         <path
           className="cb"
-          d="M300,200 C305,235 325,260 345,285"
+          d="M245,225 C280,225 290,235 320,235"
           fill="none"
           stroke="#ffd700"
-          strokeWidth="1.2"
+          strokeWidth="1"
           filter="url(#g1)"
           strokeDasharray="100"
           strokeDashoffset="100"
         />
         <path
           className="cb"
-          d="M335,200 C345,230 380,250 415,270"
+          d="M245,265 C280,265 290,285 320,285"
           fill="none"
           stroke="#ffd700"
-          strokeWidth="1.2"
+          strokeWidth="1"
           filter="url(#g1)"
           strokeDasharray="100"
           strokeDashoffset="100"
         />
 
-        {/* Service nodes at branch ends */}
+        {/* Service node pills */}
         <g className="cn" opacity="0">
-          <circle
-            cx="120"
-            cy="273"
-            r="8"
-            fill="rgba(255,215,0,0.08)"
+          <rect
+            x="320"
+            y="74"
+            width="55"
+            height="22"
+            rx="11"
+            fill="rgba(255,215,0,0.06)"
             stroke="#ffd700"
-            strokeWidth="1.2"
+            strokeWidth="1"
             filter="url(#g1)"
           />
           <text
-            x="120"
-            y="276"
+            x="347"
+            y="89"
             textAnchor="middle"
             fill="#ffd700"
-            fontSize="6.5"
+            fontSize="7"
             fontFamily="monospace"
           >
             EC2
           </text>
         </g>
         <g className="cn" opacity="0">
-          <circle
-            cx="195"
-            cy="288"
-            r="8"
-            fill="rgba(255,215,0,0.08)"
+          <rect
+            x="320"
+            y="124"
+            width="55"
+            height="22"
+            rx="11"
+            fill="rgba(255,215,0,0.06)"
             stroke="#ffd700"
-            strokeWidth="1.2"
+            strokeWidth="1"
             filter="url(#g1)"
           />
           <text
-            x="195"
-            y="291"
+            x="347"
+            y="139"
             textAnchor="middle"
             fill="#ffd700"
-            fontSize="6.5"
+            fontSize="7"
             fontFamily="monospace"
           >
             EKS
           </text>
         </g>
         <g className="cn" opacity="0">
-          <circle
-            cx="270"
-            cy="298"
-            r="8"
-            fill="rgba(255,215,0,0.08)"
+          <rect
+            x="320"
+            y="174"
+            width="55"
+            height="22"
+            rx="11"
+            fill="rgba(255,215,0,0.06)"
             stroke="#ffd700"
-            strokeWidth="1.2"
+            strokeWidth="1"
             filter="url(#g1)"
           />
           <text
-            x="270"
-            y="301"
+            x="347"
+            y="189"
             textAnchor="middle"
             fill="#ffd700"
-            fontSize="5.5"
+            fontSize="6"
             fontFamily="monospace"
           >
             Lambda
           </text>
         </g>
         <g className="cn" opacity="0">
-          <circle
-            cx="345"
-            cy="288"
-            r="8"
-            fill="rgba(255,215,0,0.08)"
+          <rect
+            x="320"
+            y="224"
+            width="55"
+            height="22"
+            rx="11"
+            fill="rgba(255,215,0,0.06)"
             stroke="#ffd700"
-            strokeWidth="1.2"
+            strokeWidth="1"
             filter="url(#g1)"
           />
           <text
-            x="345"
-            y="291"
+            x="347"
+            y="239"
             textAnchor="middle"
             fill="#ffd700"
-            fontSize="6.5"
+            fontSize="7"
             fontFamily="monospace"
           >
             S3
           </text>
         </g>
         <g className="cn" opacity="0">
-          <circle
-            cx="415"
-            cy="273"
-            r="8"
-            fill="rgba(255,215,0,0.08)"
+          <rect
+            x="320"
+            y="274"
+            width="55"
+            height="22"
+            rx="11"
+            fill="rgba(255,215,0,0.06)"
             stroke="#ffd700"
-            strokeWidth="1.2"
+            strokeWidth="1"
             filter="url(#g1)"
           />
           <text
-            x="415"
-            y="276"
+            x="347"
+            y="289"
             textAnchor="middle"
             fill="#ffd700"
-            fontSize="6.5"
+            fontSize="7"
             fontFamily="monospace"
           >
             VPC
           </text>
         </g>
 
-        {/* ── PULSE PARTICLES traveling cloud → nodes ── */}
-        {/* Each follows its branch path */}
-        <circle className="cpulse" r="3" fill="#ffd700" filter="url(#g2)" opacity="0">
-          <animateMotion dur="1.5s" repeatCount="indefinite" begin="0.5s">
+        {/* ── Data pulse particles ── */}
+        <circle className="cpulse" r="2.5" fill="#ffd700" filter="url(#g2)" opacity="0">
+          <animateMotion dur="1.2s" repeatCount="indefinite" begin="0.3s">
             <mpath href="#cpPath0" />
+          </animateMotion>
+          <animate
+            attributeName="opacity"
+            values="0;0.9;0.9;0"
+            dur="1.2s"
+            repeatCount="indefinite"
+            begin="0.3s"
+          />
+        </circle>
+        <circle className="cpulse" r="2.5" fill="#ffd700" filter="url(#g2)" opacity="0">
+          <animateMotion dur="1.4s" repeatCount="indefinite" begin="0.6s">
+            <mpath href="#cpPath1" />
+          </animateMotion>
+          <animate
+            attributeName="opacity"
+            values="0;0.8;0.8;0"
+            dur="1.4s"
+            repeatCount="indefinite"
+            begin="0.6s"
+          />
+        </circle>
+        <circle className="cpulse" r="2.5" fill="#ffd700" filter="url(#g2)" opacity="0">
+          <animateMotion dur="1.1s" repeatCount="indefinite" begin="0.1s">
+            <mpath href="#cpPath2" />
+          </animateMotion>
+          <animate
+            attributeName="opacity"
+            values="0;0.9;0.9;0"
+            dur="1.1s"
+            repeatCount="indefinite"
+            begin="0.1s"
+          />
+        </circle>
+        <circle className="cpulse" r="2.5" fill="#ffd700" filter="url(#g2)" opacity="0">
+          <animateMotion dur="1.3s" repeatCount="indefinite" begin="0.8s">
+            <mpath href="#cpPath3" />
+          </animateMotion>
+          <animate
+            attributeName="opacity"
+            values="0;0.8;0.8;0"
+            dur="1.3s"
+            repeatCount="indefinite"
+            begin="0.8s"
+          />
+        </circle>
+        <circle className="cpulse" r="2.5" fill="#ffd700" filter="url(#g2)" opacity="0">
+          <animateMotion dur="1.5s" repeatCount="indefinite" begin="0.5s">
+            <mpath href="#cpPath4" />
           </animateMotion>
           <animate
             attributeName="opacity"
@@ -865,86 +1123,39 @@ const WorkflowAnimation = () => {
             begin="0.5s"
           />
         </circle>
-        <circle className="cpulse" r="3" fill="#ffd700" filter="url(#g2)" opacity="0">
-          <animateMotion dur="1.8s" repeatCount="indefinite" begin="0.8s">
-            <mpath href="#cpPath1" />
-          </animateMotion>
-          <animate
-            attributeName="opacity"
-            values="0;0.8;0.8;0"
-            dur="1.8s"
-            repeatCount="indefinite"
-            begin="0.8s"
-          />
-        </circle>
-        <circle className="cpulse" r="3" fill="#ffd700" filter="url(#g2)" opacity="0">
-          <animateMotion dur="1.4s" repeatCount="indefinite" begin="0.3s">
-            <mpath href="#cpPath2" />
-          </animateMotion>
-          <animate
-            attributeName="opacity"
-            values="0;0.9;0.9;0"
-            dur="1.4s"
-            repeatCount="indefinite"
-            begin="0.3s"
-          />
-        </circle>
-        <circle className="cpulse" r="3" fill="#ffd700" filter="url(#g2)" opacity="0">
-          <animateMotion dur="1.7s" repeatCount="indefinite" begin="1s">
-            <mpath href="#cpPath3" />
-          </animateMotion>
-          <animate
-            attributeName="opacity"
-            values="0;0.8;0.8;0"
-            dur="1.7s"
-            repeatCount="indefinite"
-            begin="1s"
-          />
-        </circle>
-        <circle className="cpulse" r="3" fill="#ffd700" filter="url(#g2)" opacity="0">
-          <animateMotion dur="1.6s" repeatCount="indefinite" begin="0.6s">
-            <mpath href="#cpPath4" />
-          </animateMotion>
-          <animate
-            attributeName="opacity"
-            values="0;0.9;0.9;0"
-            dur="1.6s"
-            repeatCount="indefinite"
-            begin="0.6s"
-          />
-        </circle>
-        {/* Hidden paths for animateMotion */}
-        <path id="cpPath0" d="M210,200 C200,230 160,250 120,270" fill="none" stroke="none" />
-        <path id="cpPath1" d="M240,200 C235,235 215,260 195,285" fill="none" stroke="none" />
-        <path id="cpPath2" d="M270,200 C270,240 270,265 270,295" fill="none" stroke="none" />
-        <path id="cpPath3" d="M300,200 C305,235 325,260 345,285" fill="none" stroke="none" />
-        <path id="cpPath4" d="M335,200 C345,230 380,250 415,270" fill="none" stroke="none" />
+        {/* Hidden paths for pulses */}
+        <path id="cpPath0" d="M245,105 C280,105 290,85 320,85" fill="none" stroke="none" />
+        <path id="cpPath1" d="M245,145 C280,145 290,135 320,135" fill="none" stroke="none" />
+        <path id="cpPath2" d="M245,185 C280,185 290,185 320,185" fill="none" stroke="none" />
+        <path id="cpPath3" d="M245,225 C280,225 290,235 320,235" fill="none" stroke="none" />
+        <path id="cpPath4" d="M245,265 C280,265 290,285 320,285" fill="none" stroke="none" />
 
-        {/* Exit port on right side of cloud */}
-        <circle
-          cx="385"
-          cy="165"
-          r="7"
-          fill="rgba(255,215,0,0.08)"
-          stroke="#ffd700"
-          strokeWidth="1.5"
-          filter="url(#g1)"
-        />
-        <circle cx="385" cy="165" r="3" fill="#ffd700" filter="url(#g2)" opacity="0.6" />
-
-        {/* Exit line right from port */}
+        {/* Exit line */}
         <line
           id="exitLine2"
-          x1="392"
-          y1="165"
+          x1="375"
+          y1="185"
           x2="520"
-          y2="165"
+          y2="185"
           stroke="#ffd700"
           strokeWidth="2.5"
           filter="url(#g2)"
           strokeDasharray="500"
           strokeDashoffset="500"
         />
+
+        {/* Stage label */}
+        <text
+          x="165"
+          y="330"
+          textAnchor="middle"
+          fill="rgba(255,215,0,0.2)"
+          fontSize="8"
+          fontFamily="monospace"
+          letterSpacing="0.1em"
+        >
+          CLOUD INFRASTRUCTURE
+        </text>
       </g>
 
       {/* ════════════════════════════════════
@@ -1765,8 +1976,9 @@ const WorkflowAnimation = () => {
 const Hero = ({ data }) => {
   const [isMounted, setIsMounted] = useState(false);
   const [typedText, setTypedText] = useState('');
-  const [mousePos, setMousePos] = useState({ x: -1000, y: -1000 });
   const containerRef = useRef(null);
+  const spotlightRef = useRef(null);
+  const moveRaf = useRef(null);
   const phraseIndex = useRef(0);
   const charIndex = useRef(0);
   const isDeleting = useRef(false);
@@ -1815,14 +2027,34 @@ const Hero = ({ data }) => {
     };
   }, [isMounted]);
 
+  // Move the spotlight by writing transform directly to the DOM (throttled to one
+  // write per frame). This avoids a React re-render + gradient repaint on every
+  // mousemove, which was the source of the visible tearing/jank.
   const handleMouseMove = useCallback(e => {
-    if (!containerRef.current) {
+    const container = containerRef.current;
+    const spotlight = spotlightRef.current;
+    if (!container || !spotlight || moveRaf.current) {
       return;
     }
-    const rect = containerRef.current.getBoundingClientRect();
-    setMousePos({ x: e.clientX - rect.left, y: e.clientY - rect.top });
+    const { clientX, clientY } = e;
+    moveRaf.current = requestAnimationFrame(() => {
+      moveRaf.current = null;
+      const rect = container.getBoundingClientRect();
+      spotlight.style.transform = `translate(${clientX - rect.left - 300}px, ${
+        clientY - rect.top - 300
+      }px)`;
+      spotlight.style.opacity = '1';
+    });
   }, []);
-  const handleMouseLeave = useCallback(() => setMousePos({ x: -1000, y: -1000 }), []);
+  const handleMouseLeave = useCallback(() => {
+    if (moveRaf.current) {
+      cancelAnimationFrame(moveRaf.current);
+      moveRaf.current = null;
+    }
+    if (spotlightRef.current) {
+      spotlightRef.current.style.opacity = '0';
+    }
+  }, []);
 
   const { frontmatter, html } = data[0].node;
   const one = () => (
@@ -1861,26 +2093,34 @@ const Hero = ({ data }) => {
   const items = [one, two, three, four, fourHalf, five];
 
   return (
-    <StyledContainer
-      ref={containerRef}
-      onMouseMove={handleMouseMove}
-      onMouseLeave={handleMouseLeave}
-    >
-      <StyledSpotlight style={{ left: `${mousePos.x}px`, top: `${mousePos.y}px` }} />
-      <StyledLeftContent>
-        <TransitionGroup component={null}>
-          {isMounted &&
-            items.map((item, i) => (
-              <CSSTransition key={i} classNames="fadeup" timeout={loaderDelay}>
-                {item}
-              </CSSTransition>
-            ))}
-        </TransitionGroup>
-      </StyledLeftContent>
-      <StyledRightContent>
-        <WorkflowAnimation />
-      </StyledRightContent>
-    </StyledContainer>
+    <>
+      <StyledContainer
+        ref={containerRef}
+        onMouseMove={handleMouseMove}
+        onMouseLeave={handleMouseLeave}
+      >
+        <StyledMobileGlow />
+        <StyledSpotlight ref={spotlightRef} />
+        <StyledLeftContent>
+          <StyledMobileTag>AI + DevOps Engineer</StyledMobileTag>
+          <TransitionGroup component={null}>
+            {isMounted &&
+              items.map((item, i) => (
+                <CSSTransition key={i} classNames="fadeup" timeout={loaderDelay}>
+                  {item}
+                </CSSTransition>
+              ))}
+          </TransitionGroup>
+          <StyledScrollHint>
+            <span className="arrow">↓</span>
+            <span>scroll</span>
+          </StyledScrollHint>
+        </StyledLeftContent>
+        <StyledRightContent>
+          <WorkflowAnimation />
+        </StyledRightContent>
+      </StyledContainer>
+    </>
   );
 };
 

@@ -29,10 +29,15 @@ const StyledTabList = styled.ul`
 
   ${media.thone`
     display: flex;
-    overflow-x: scroll;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
     margin-bottom: 30px;
     width: calc(100% + 100px);
     margin-left: -50px;
+    scrollbar-width: none;
+    &::-webkit-scrollbar {
+      display: none;
+    }
   `};
   ${media.phablet`
     width: calc(100% + 50px);

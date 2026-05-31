@@ -39,6 +39,9 @@ const StyledCard = styled.a`
     border-color: rgba(255, 215, 0, 0.3);
     box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5), 0 0 20px rgba(255, 215, 0, 0.1);
   }
+  ${media.phablet`
+    padding: 1.5rem 1.25rem;
+  `};
 `;
 const StyledCardHeader = styled.div`
   ${mixins.flexBetween};
